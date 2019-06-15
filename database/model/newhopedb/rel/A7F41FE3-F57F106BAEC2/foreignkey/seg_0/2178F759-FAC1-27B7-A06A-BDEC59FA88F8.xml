@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2178F759-FAC1-27B7-A06A-BDEC59FA88F8" containerWithKeyObject="F9E1D673-C205-6EA0-F023-8CF25E06921C" localFKIndex="8E27EA6B-EDA5-51A0-E5AA-E5C3AEEC5227" name="FK1_ESTIMATES$TYPE">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:29:06 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<referredTableLongName>ESTIMATE_TYPES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>DB290746-83E9-A55A-419A-19628D93C1A8</referredTableID>
+<keyObject>2F68E62E-C188-C5B2-6D3B-8D877039CE55</keyObject>
+<referredKeyID>2F68E62E-C188-C5B2-6D3B-8D877039CE55</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ESTIMATE_TYPE_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

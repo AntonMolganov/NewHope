@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2F589C9D-00E3-6D7E-D306-6270256A0B34" containerWithKeyObject="DFCF7021-40E2-69B6-0EBB-8D5F2E1DCC29" localFKIndex="ADFCDE8C-A973-A046-8DCB-8A5B08660752" name="FK3_TRIPS$SHIPPER">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 15:31:59 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<referredTableLongName>NEWHOPE.SHIPPERS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>A85C0B3E-1343-39B1-03A8-52B4347BFB35</referredTableID>
+<keyObject>A860BE07-6AD4-66D2-1501-F02A3C83907D</keyObject>
+<referredKeyID>A860BE07-6AD4-66D2-1501-F02A3C83907D</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>SHIPPER_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

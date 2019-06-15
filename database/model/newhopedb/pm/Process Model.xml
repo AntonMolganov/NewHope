@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProcessModel class="oracle.dbtools.crest.model.design.process.ProcessModel" name="Process Model" id="5D423CAC-9376-3495-44FA-5B8175A97A74">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:53:40 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</ProcessModel>

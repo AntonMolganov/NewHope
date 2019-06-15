@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="9D2823A6-72F4-9F86-93C1-8A996F01F2A1" containerWithKeyObject="F9E1D673-C205-6EA0-F023-8CF25E06921C" localFKIndex="CF4F93A3-C6EA-2ECB-1DF6-675482BB9B41" name="FK2_ESTIMATES$TRIP">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:25:44 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<referredTableLongName>NEWHOPE.TRIPS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>DFCF7021-40E2-69B6-0EBB-8D5F2E1DCC29</referredTableID>
+<keyObject>23A27BD8-3FF8-71C1-EB27-943D655B748B</keyObject>
+<referredKeyID>23A27BD8-3FF8-71C1-EB27-943D655B748B</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>TRIP_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BusinessInfoDesign class="oracle.dbtools.crest.model.businessinfo.BusinessInfoDesign" name="Business Information" id="3274900B-E709-3C5E-564B-55F61CB6E963">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:53:40 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</BusinessInfoDesign>

@@ -1,0 +1,130 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F9E1D673-C205-6EA0-F023-8CF25E06921C" schemaObject="C1AA0350-047D-A3ED-E095-E232D2E46C4B" name="ESTIMATES">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:22:38 UTC</createdTime>
+<commentInRDBMS>Оценки поездок</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<ordsAlias>table_4</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ESTIMATE_ID" id="5E6ABC3D-3793-2B41-CB50-0F1694212033">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:24:32 UTC</createdTime>
+<commentInRDBMS>ИД оценки</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTIMATE_TYPE_ID" id="4EDDCE75-A347-E3CB-2C87-4F822E3E58F4">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:29:06 UTC</createdTime>
+<commentInRDBMS>Что оцениваем</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2178F759-FAC1-27B7-A06A-BDEC59FA88F8" referredColumn="138DAD75-A998-6A36-04A9-B2E9DDCBF9CF"/>
+</associations>
+</Column>
+<Column name="TRIP_ID" id="F24915B5-4384-5BF6-58DB-079891C014B3">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:25:44 UTC</createdTime>
+<commentInRDBMS>ИД поездки, к которой относится данная оценка</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9D2823A6-72F4-9F86-93C1-8A996F01F2A1" referredColumn="84A6DD4D-B9CA-93A7-9606-506167FC0588"/>
+</associations>
+</Column>
+<Column name="I_VALUE" id="700F5312-7EE0-AE48-8B22-FD4E236398E6">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:24:32 UTC</createdTime>
+<commentInRDBMS>Значение оценки</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="S_COMMENT" id="0D7329D9-0BC0-CD18-C199-63C71802378E">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:24:32 UTC</createdTime>
+<commentInRDBMS>Комментарий к оценке</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 CHAR</dataTypeSize>
+<ownDataTypeParameters>4000 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3C89B20A-8A9D-7651-75A1-45B4D6C200C9" name="PK_ESTIMATES">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:24:32 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5E6ABC3D-3793-2B41-CB50-0F1694212033"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D0435279-177A-B1BC-73F3-BEC4DFBC9AC7" name="I1_ESTIMATES$TYPE">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:31:13 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4EDDCE75-A347-E3CB-2C87-4F822E3E58F4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1AFAE4C0-831A-B752-95CB-0A8191BBF626" name="I2_ESTIMATES$TRIP">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:31:13 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F24915B5-4384-5BF6-58DB-079891C014B3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CF4F93A3-C6EA-2ECB-1DF6-675482BB9B41" name="FK2_ESTIMATES$TRIP">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:25:44 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F24915B5-4384-5BF6-58DB-079891C014B3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8E27EA6B-EDA5-51A0-E5AA-E5C3AEEC5227" name="FK1_ESTIMATES$TYPE">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:29:06 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4EDDCE75-A347-E3CB-2C87-4F822E3E58F4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
