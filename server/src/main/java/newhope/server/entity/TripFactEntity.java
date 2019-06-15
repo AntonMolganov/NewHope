@@ -5,6 +5,31 @@ import java.util.Date;
 
 @Entity
 @Table(name = "V_TRIPS_INFO")
+
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "P_CREATE",
+                procedureName = "PCK_TRIPS_API.P_CREATE",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_client_id", type = Long.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_route_id", type = Long.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_shipper_id", type = Long.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_d_trip_date", type = Date.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_i_compliance_level", type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_s_compliance_comment", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_i_free_space_level", type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_s_free_space_comment", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_i_tech_state_level", type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_s_tech_state_comment", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_i_law_violence_level", type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_s_law_violence_comment", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_i_service_level", type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "i_s_service_comment", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "o_s_err_code", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "o_s_err_text", type = String.class)
+                })
+})
+
+
 public class TripFactEntity {
     @Column(name = "TRIP_ID")
     @Id

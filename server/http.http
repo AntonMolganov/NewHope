@@ -29,8 +29,16 @@ Accept: */*
 Cache-Control: no-cache
 Content-Type: application/json
 
-[{
-}]
+[
+  {
+    "userId": 1,
+    "routeType": 1,
+    "routeName": "67",
+    "tripDateTime": "2019-05-12",
+    "serviceLevel": 1,
+    "techStateLevel": 1
+  }
+]
 
 
 <> 2019-06-15T055357.500.json

@@ -14,7 +14,12 @@ public class TripFactDto {
     public Integer lawViolenceLevel;
     public Integer timeTableComplianceLevel;
     public Integer freeSpaceLevel;
-
+    public String serviceComment;
+    public String techStateComment;
+    public String lawViolenceComment;
+    public String timeTableComplianceComment;
+    public String freeSpaceComment;
+    
     public Long getId() {
         return id;
     }
@@ -93,5 +98,45 @@ public class TripFactDto {
 
     public void setRouteName(String routeName) {
         this.routeName = routeName;
+    }
+
+    public String getServiceComment() {
+        return serviceComment;
+    }
+
+    public void setServiceComment(String serviceComment) {
+        this.serviceComment = serviceComment;
+    }
+
+    public String getTechStateComment() {
+        return techStateComment;
+    }
+
+    public void setTechStateComment(String techStateComment) {
+        this.techStateComment = techStateComment;
+    }
+
+    public String getLawViolenceComment() {
+        return lawViolenceComment;
+    }
+
+    public void setLawViolenceComment(String lawViolenceComment) {
+        this.lawViolenceComment = lawViolenceComment;
+    }
+
+    public String getTimeTableComplianceComment() {
+        return timeTableComplianceComment;
+    }
+
+    public void setTimeTableComplianceComment(String timeTableComplianceComment) {
+        this.timeTableComplianceComment = timeTableComplianceComment;
+    }
+
+    public String getFreeSpaceComment() {
+        return freeSpaceComment;
+    }
+
+    public void setFreeSpaceComment(String freeSpaceComment) {
+        this.freeSpaceComment = freeSpaceComment;
     }
 }

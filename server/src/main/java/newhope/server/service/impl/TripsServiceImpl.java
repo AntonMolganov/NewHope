@@ -24,7 +24,20 @@ public class TripsServiceImpl implements TripsService {
     @Override
     public void addAssessments(List<TripFactDto> assessments) {
         for (TripFactDto dto: assessments) {
-            dao.addAssessment(dto);
+            dao.addAssessment(dto.getUserId(),
+                    1l,
+                    1l,
+                    dto.getTripDateTime(),
+                    dto.getTimeTableComplianceLevel(),
+                    dto.getTimeTableComplianceComment(),
+                    dto.getFreeSpaceLevel(),
+                    dto.getFreeSpaceComment(),
+                    dto.getTechStateLevel(),
+                    dto.getTechStateComment(),
+                    dto.getLawViolenceLevel(),
+                    dto.getLawViolenceComment(),
+                    dto.getServiceLevel(),
+                    dto.getServiceComment());
         }
     }
 
