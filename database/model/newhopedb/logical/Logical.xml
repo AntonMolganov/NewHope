@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="909767B2-9174-7E14-CAA5-E6094BBE5DEA" mainViewID="B2C9FDC9-C76C-5460-071F-2AC0CFD34B13">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:53:39 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A85C0B3E-1343-39B1-03A8-52B4347BFB35" schemaObject="C1AA0350-047D-A3ED-E095-E232D2E46C4B" name="SHIPPERS">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:59:14 UTC</createdTime>
+<commentInRDBMS>Перевозчик</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SHIPPER_ID" id="E0C2A38F-D9C7-1ECA-CD99-F7D78FFD7D3F">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:59:54 UTC</createdTime>
+<commentInRDBMS>ИД транспортного средства</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="S_NAME" id="C564BCD0-F971-00CE-FD6D-76E241CCD665">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:59:54 UTC</createdTime>
+<commentInRDBMS>Наименование</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000 CHAR</dataTypeSize>
+<ownDataTypeParameters>1000 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A860BE07-6AD4-66D2-1501-F02A3C83907D" name="PK_SHIPPERS">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:59:54 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E0C2A38F-D9C7-1ECA-CD99-F7D78FFD7D3F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

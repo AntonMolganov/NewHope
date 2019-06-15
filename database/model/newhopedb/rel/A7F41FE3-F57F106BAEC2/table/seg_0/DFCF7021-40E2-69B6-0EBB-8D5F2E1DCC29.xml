@@ -1,0 +1,172 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DFCF7021-40E2-69B6-0EBB-8D5F2E1DCC29" schemaObject="C1AA0350-047D-A3ED-E095-E232D2E46C4B" name="TRIPS">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 11:03:41 UTC</createdTime>
+<commentInRDBMS>Поездки</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<ordsAlias>table_5</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TRIP_ID" id="84A6DD4D-B9CA-93A7-9606-506167FC0588">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 11:04:36 UTC</createdTime>
+<commentInRDBMS>Ид поездки</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CLIENT_ID" id="8E5B0334-6A26-6E42-EB47-B81E63161797">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 11:21:02 UTC</createdTime>
+<commentInRDBMS>ИД Клиента</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="381E85DE-8F7C-241E-1317-6728158CE031" referredColumn="14D30A66-6316-18A5-1C51-1BE6B8662FC3"/>
+</associations>
+</Column>
+<Column name="D_TRIP_DATE" id="B8C64E8A-D8F6-0049-E49C-5F48EF85BD60">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 11:04:36 UTC</createdTime>
+<commentInRDBMS>Дата поездки</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ROUTE_ID" id="9BFA5203-3A16-6619-3B23-07726C20F87F">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:38:58 UTC</createdTime>
+<commentInRDBMS>Идентификатор маршрута по которому ехали</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="432D4F2E-FE7A-C832-301B-6E7472683A8C" referredColumn="7A7331FF-C5B8-9127-995D-3958822EAC33"/>
+</associations>
+</Column>
+<Column name="D_UPDATE" id="5BE95196-9361-EA3A-4E6C-D78CE8DDEF8B">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:33:57 UTC</createdTime>
+<commentInRDBMS>Дата модификации (системная)</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SHIPPER_ID" id="5A267A03-1931-916D-0BE6-892F5E6D09EC">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 15:31:59 UTC</createdTime>
+<commentInRDBMS>ИД Перевозчика</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2F589C9D-00E3-6D7E-D306-6270256A0B34" referredColumn="E0C2A38F-D9C7-1ECA-CD99-F7D78FFD7D3F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="23A27BD8-3FF8-71C1-EB27-943D655B748B" name="PK_TRIPS">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 11:29:25 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="84A6DD4D-B9CA-93A7-9606-506167FC0588"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F57B684E-74E9-1CBB-8E4D-5BBBD1951059" name="I1_TRIPS$CLIENT">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 11:32:09 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8E5B0334-6A26-6E42-EB47-B81E63161797"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EEA24DF2-03BC-DD1E-3725-BB4C8EB17A92" name="I2_TRIPS$ROUTE_ID">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 11:32:09 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9BFA5203-3A16-6619-3B23-07726C20F87F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="09BAF519-9725-8B49-1CBE-D6F2B64B9A1F" name="I3_TRIPS$D_ESTIMATE">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 12:05:31 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B8C64E8A-D8F6-0049-E49C-5F48EF85BD60"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7A88DDEA-CE9A-8055-D0C5-04C9365C3D5C" name="I4_TRIPS$SHIPPER">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 15:33:40 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5A267A03-1931-916D-0BE6-892F5E6D09EC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B0CC4F8B-0ED8-8533-4667-74789D39E138" name="FK1_TRIPS$CLIENT">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 11:21:02 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8E5B0334-6A26-6E42-EB47-B81E63161797"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D3D44080-C5B6-8501-6410-38051D51B82C" name="FK2_TRIPS$ROUTE">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:38:57 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9BFA5203-3A16-6619-3B23-07726C20F87F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ADFCDE8C-A973-A046-8DCB-8A5B08660752" name="FK3_TRIPS$SHIPPER">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 15:31:59 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5A267A03-1931-916D-0BE6-892F5E6D09EC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

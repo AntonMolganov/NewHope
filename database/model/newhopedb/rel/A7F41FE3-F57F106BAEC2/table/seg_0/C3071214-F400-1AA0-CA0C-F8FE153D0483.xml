@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C3071214-F400-1AA0-CA0C-F8FE153D0483" schemaObject="C1AA0350-047D-A3ED-E095-E232D2E46C4B" name="ROUTES">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:36:53 UTC</createdTime>
+<commentInRDBMS>Маршруты перевозчиков</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<ordsAlias>table_6</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ROUTE_ID" id="7A7331FF-C5B8-9127-995D-3958822EAC33">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:37:14 UTC</createdTime>
+<commentInRDBMS>Идентификатор маршрута</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="S_NAME" id="D7A127C5-BFD0-F623-1AD0-ABE8423EF259">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:37:14 UTC</createdTime>
+<commentInRDBMS>Номер/наименование маршрута</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TRANSPORT_TYPE_ID" id="D04E8216-0583-2400-DE07-D19463334162">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 14:06:08 UTC</createdTime>
+<commentInRDBMS>ИД вида транспортного средства</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C8E2DA5C-2105-3974-7EF9-B112D142180F" referredColumn="20F7CAB4-6C41-CE9C-25EF-D7811747A52E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A57722E4-7265-78FF-A2D9-859A2F2A209B" name="PK_ROUTES">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:37:14 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7A7331FF-C5B8-9127-995D-3958822EAC33"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4D0ED5F3-8223-2A26-7CA3-4D85ECE4903B" name="I1_ROUTES$TRANSPTYPE">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 14:07:15 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D04E8216-0583-2400-DE07-D19463334162"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="19DC146B-29B1-C59E-9856-D67E45284FCF" name="FK2_ROUTES$TRANSP_TYPE">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 14:06:08 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D04E8216-0583-2400-DE07-D19463334162"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
