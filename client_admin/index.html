@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Оценка удовлетворенности перевозчиком за период</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+  </head>
+  <body>
+    <div class="form-group">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-addon" id="dateFrom-addon">От </span>
+          <input type="text" class="form-control" id="dateFrom" placeholder="От" aria-describedby="dateFrom-addon">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon" id="dateFrom-addon">До </span>
+          <input type="text" class="form-control" id="dateTo" placeholder="До" aria-describedby="dateTo-addon">
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <table id="table" data-toggle="table" data-row-style="rowStyle">
+        <thead>
+          <tr>
+            <th data-field="shipperName">shipperName</th>
+            <th data-field="position">position</th>
+            <th data-field="assessments[1]">assessments</th>
+            <th data-field="aggrAssessment">aggrAssessment</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </body>
+  <script>
+    function getSum(total, num) {
+      return total + Math.round(num);
+    }
+    
+    function rowStyle(row, index) {
+      if (row.aggrAssessment <= 2)
+      return {
+        classes:"danger"
+      }
+      if (row.aggrAssessment >= 4)
+      return {
+        classes:"success"
+      }
+    }
+       (function() {
+       var newHopeAPI = "http://newhope/newhope/totalAssessments?dateFrom=20190601&dateTo=20190601";
+       var rawData = [{"id":0,"shipperId":1,"shipperName":"Shipper 1","position":1,"assessments":[2,1,1,1,1],"aggrAssessment":1.2}];
+       
+         $('#table').bootstrapTable({
+             data: rawData,
+  /*         url: newHopeAPI,*/
+           search: false,
+           columns: [{
+             field: 'shipperName',
+             title: 'Название поставщика',
+             sortable: true
+           },{
+             field: 'position',
+             title: 'Номер поставщика',
+             sortable: true
+           },{
+             field: 'assessments.0',
+             title: 'Критерий 1',
+             sortable: true
+           },{
+             field: 'assessments.1',
+             title: 'Критерий 2',
+             sortable: true
+           },{
+             field: 'assessments.2',
+             title: 'Критерий 3',
+             sortable: true
+           },{
+             field: 'assessments.3',
+             title: 'Критерий 4',
+             sortable: true
+           },{
+             field: 'assessments.4',
+             title: 'Критерий 5',
+             sortable: true
+           },{
+             field: 'assessments',
+             title: 'Общий критерий',
+             formatter: function editorFormatter(value, index) {
+               var aggrAssessment = 0;
+               for (var index = 0; index < value.length; index++) {
+                 console.log(value[index]); 
+                 aggrAssessment += value[index];
+               }
+               console.log(value.length);
+               aggrAssessment = aggrAssessment/value.length;
+               return aggrAssessment;
+             }
+           }]
+         });
+
+     })();
+     
+  </script> 
+</html>
