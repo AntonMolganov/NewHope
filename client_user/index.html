@@ -9,7 +9,11 @@
     -->
     <script src="https://yandex.st/jquery/2.2.3/jquery.min.js" type="text/javascript"></script>
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=0e3bda0c-bd5a-4ae6-90a0-ab175ca8bb3b" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="new_hope_app.js" type="text/javascript"></script>
+    <script src="rating.js" type="text/javascript"></script>
 	<style>
         html, body, #map {
             width: 100%; height: 100%; padding: 0; margin: 0;
@@ -41,5 +45,77 @@
 <div id="list"></div>
 <div id="map"></div>
 <div id="result_list"></div>
+    <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="ratingModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container">
+                        <div class="row lead">
+                            <div class="input-group col-md-4">
+                                <span class="input-group-addon" id="timeTableComplLevel-addon">Соблюдение графика </span>
+                                <span class="input-group-addon" id="timeTableComplLevel-count">5</span>
+                                <div id="timeTableComplLevel" class="starrr" align="right" aria-describedby="timeTableComplLevel-addon" data-rating="5"></div>
+                                <input class="hidden" id="timeTableComplLevel-comment" type="text">
+                            </div>
+                        </div>
+                    </div>
+   
+                    <div class="container">
+                        <div class="row lead">
+                            <div class="input-group col-md-4">
+                                <span class="input-group-addon" id="freeSpaceLevel-addon">Заполненность т/с </span>
+                                <span class="input-group-addon" id="freeSpaceLevel-count" >5</span>
+                                <div id="freeSpaceLevel" class="starrr" align="right" aria-describedby="freeSpaceLevel-addon" data-rating="5"></div>
+                                <input class="hidden" id="freeSpaceLevel-comment" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row lead">
+                            <div class="input-group col-md-4">
+                                <span class="input-group-addon" id="techStateLevel-addon">Техническое состояние т/с </span>
+                                <span class="input-group-addon" id="count-techStateLevel">5</span>
+                                <div id="techStateLevel" class="starrr" align="right" aria-describedby="techStateLevel-addon" data-rating="5"></div>
+                                <input class="hidden" id="techStateLevel-comment" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row lead">
+                            <div class="input-group col-md-4">
+                                <span class="input-group-addon" id="lawViolenceLevel-addon">Соблюдение ПДД </span>
+                                <span class="input-group-addon" id="lawViolenceLevel-count">5</span>
+                                <div id="lawViolenceLevel" class="starrr" align="right" aria-describedby="lawViolenceLevel-addon" data-rating="5"></div>
+                                <input class="hidden" id="lawViolenceLevel-comment" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="container">
+                        <div class="row lead">
+                            <div class="input-group col-md-4">
+                                <span class="input-group-addon" id="serviceLevel-addon">Качество оказания услуг </span>
+                                <span class="input-group-addon" id="serviceLevel-count">5</span>
+                                <div id="serviceLevel" class="starrr" align="right" aria-describedby="serviceLevel-addon" data-rating="5"></div>
+                                <input class="hidden" id="serviceLevel-comment" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary" onclick="execRating()">Оценить</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

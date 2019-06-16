@@ -1,3 +1,4 @@
+    var transportIteration = 0;
     // Starrr plugin (https://github.com/dobtco/starrr)
     var __slice = [].slice;
 
@@ -149,12 +150,49 @@
       });
     });
 
+    function initRating() {
+        $('#timeTableComplLevel-count').html(5);
+        $('#timeTableComplLevel').find('span').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#timeTableComplLevel-comment').addClass('hidden');
+        $('#timeTableComplLevel-comment').val("");
+        
+        $('#freeSpaceLevel-count').html(5);
+        $('#freeSpaceLevel').find('span').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#freeSpaceLevel-comment').addClass('hidden');
+        $('#freeSpaceLevel-comment').val("");
+        
+        $('#techStateLevel-count').html(5);
+        $('#techStateLevel').find('span').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#techStateLevel-comment').addClass('hidden');
+        $('#techStateLevel-comment').val("");
+        
+        $('#lawViolenceLevel-count').html(5);
+        $('#lawViolenceLevel').find('span').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#lawViolenceLevel-comment').addClass('hidden');
+        $('#lawViolenceLevel-comment').val("");
+        
+        $('#serviceLevel-count').html(5);
+        $('#serviceLevel').find('span').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#serviceLevel-comment').addClass('hidden');
+        $('#serviceLevel-comment').val("");
+        
+        var transportName;
+        switch (transportData[transportIteration].type) {
+          case "bus": transportName = "автобуса"; break; //Автобус
+          case "trolleybus": transportName = "троллейбуса"; break; //Троллейбус
+          case "tramway": transportName = "трамвая"; break; //Трамвай
+          case "minibus": transportName = "маршрутного такси"; break; //Маршрутное такси
+        }
+        
+        $('#ratingModalLabel').html("Оценка маршрута " + transportName + " номер " + transportData[transportIteration].name);
+    }
+
     function execRating() {
       var rating = [
                      {
                        "userId": 1,
-                       "routeType": "bus",
-                       "routeName": "67",
+                       "routeType": transportData[transportIteration].type,
+                       "routeName": transportData[transportIteration].name,
                        "tripDateTime": new Date(),
                        "timeTableComplLevel": $('#timeTableComplLevel-count').text(),
                        "freeSpaceLevel": $('#freeSpaceLevel-count').text(),
@@ -168,7 +206,6 @@
                        "serviceComment": $('#serviceLevel-comment').val()
                      }
                    ];
-      $('#ratingModal').modal('hide');
       $.ajax({
             type: "POST",
             url: "http://newhope/newhope/trips/add",
@@ -180,4 +217,20 @@
                 alert(errMsg);
             }
       });
+      transportIteration += 1;
+      if (transportIteration === transportData.length) {
+        $('#ratingModal').modal('hide');
+        /*todo запретить кнопку*/
+      } else {
+        initRating();
+      }
+    }
+    
+function cancelRating() {
+      transportIteration += 1;
+      if (transportIteration === transportData.length) {
+        /*todo запретить кнопку*/
+      } else {
+        initRating();
+      }
     }

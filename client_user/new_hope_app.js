@@ -2,6 +2,8 @@ const l_center = [58.01202424939408, 56.26974105834945];
 const def_t_end = '2019-06-16T23:59';//'13:00'; //время по умолчанию, к которому надо прибыть
 const def_t_ready = '10'; //время на сборы по умолчанию
 
+var transportData = [];
+
 function init () {
     // Создаем карту с добавленными на нее кнопками.
     var myMap = new ymaps.Map('map', {
@@ -291,7 +293,6 @@ function init () {
 
     const openMarkForm = (segments) => {
         try {
-            var transportData = [];
             for (var i = 0; i < segments.getLength(); i++) {
                 if (segments.get(i).properties._data.type === "walk") continue;
                 var segment = segments.get(i).properties._data.rawProperties.SegmentMetaData;
@@ -302,8 +303,10 @@ function init () {
                 });
             }
             if (transportData.length === 0) alert("Вы не ездили на общественном транспорте и оценивать нечего");
-            //todo
-
+            
+            initRating();
+            $('#ratingModal').modal();
+            
 
         }catch (err){
             alert("Ошибка при формировании данных поездки, попробуйте в другой раз :(");
