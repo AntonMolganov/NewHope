@@ -316,14 +316,15 @@ function init () {
                     name: segment.Transports[0].name
                 });
             }
-            if (transportData.length === 0) alert("Вы не ездили на общественном транспорте и оценивать нечего");
-
-            initRating();
-            $('#ratingModal').modal();
-            
+            if (transportData.length === 0) {
+              bootbox.alert("Вы не ездили на общественном транспорте и оценивать нечего");
+            } else {
+              initRating();
+              $('#ratingModal').modal();
+            }
 
         }catch (err){
-            alert("Ошибка при формировании данных поездки, попробуйте в другой раз :(");
+            bootbox.alert("Ошибка при формировании данных поездки, попробуйте в другой раз :(");
         }
     };
 
