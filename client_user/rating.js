@@ -1,3 +1,4 @@
+    var transportIteration = 0;
     // Starrr plugin (https://github.com/dobtco/starrr)
     var __slice = [].slice;
 
@@ -108,40 +109,103 @@
 
     $(document).ready(function() {
       $('#timeTableComplLevel').on('starrr:change', function(e, value){
-        $('#count-timeTableComplLevel').html(value);
-        
-        
+        $('#timeTableComplLevel-count').html(value);
+        if (value < 5) {
+          $('#timeTableComplLevel-comment').removeClass('hidden');
+        } else {
+          $('#timeTableComplLevel-comment').addClass('hidden');
+        }
       });
       $('#freeSpaceLevel').on('starrr:change', function(e, value){
-        $('#count-freeSpaceLevel').html(value);
+        $('#freeSpaceLevel-count').html(value);
+        if (value < 5) {
+          $('#freeSpaceLevel-comment').removeClass('hidden');
+        } else {
+          $('#freeSpaceLevel-comment').addClass('hidden');
+        }
       });
       $('#techStateLevel').on('starrr:change', function(e, value){
-        $('#count-techStateLevel').html(value);
+        $('#techStateLevel-count').html(value);
+        if (value < 5) {
+          $('#techStateLevel-comment').removeClass('hidden');
+        } else {
+          $('#techStateLevel-comment').addClass('hidden');
+        }
       });
       $('#lawViolenceLevel').on('starrr:change', function(e, value){
-        $('#count-lawViolenceLevel').html(value);
+        $('#lawViolenceLevel-count').html(value);
+        if (value < 5) {
+          $('#lawViolenceLevel-comment').removeClass('hidden');
+        } else {
+          $('#lawViolenceLevel-comment').addClass('hidden');
+        }
       });
       $('#serviceLevel').on('starrr:change', function(e, value){
-        $('#count-serviceLevel').html(value);
+        $('#serviceLevel-count').html(value);
+        if (value < 5) {
+          $('#serviceLevel-comment').removeClass('hidden');
+        } else {
+          $('#serviceLevel-comment').addClass('hidden');
+        }
       });
-      $('#timeTableComplLevel-comment').collapse('show');
     });
+
+    function initRating() {
+        $('#timeTableComplLevel-count').html(5);
+        $('#timeTableComplLevel').find('span').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#timeTableComplLevel-comment').addClass('hidden');
+        $('#timeTableComplLevel-comment').val("");
+        
+        $('#freeSpaceLevel-count').html(5);
+        $('#freeSpaceLevel').find('span').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#freeSpaceLevel-comment').addClass('hidden');
+        $('#freeSpaceLevel-comment').val("");
+        
+        $('#techStateLevel-count').html(5);
+        $('#techStateLevel').find('span').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#techStateLevel-comment').addClass('hidden');
+        $('#techStateLevel-comment').val("");
+        
+        $('#lawViolenceLevel-count').html(5);
+        $('#lawViolenceLevel').find('span').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#lawViolenceLevel-comment').addClass('hidden');
+        $('#lawViolenceLevel-comment').val("");
+        
+        $('#serviceLevel-count').html(5);
+        $('#serviceLevel').find('span').removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        $('#serviceLevel-comment').addClass('hidden');
+        $('#serviceLevel-comment').val("");
+        
+        var transportName;
+        switch (transportData[transportIteration].type) {
+          case "bus": transportName = "автобуса"; break; //Автобус
+          case "trolleybus": transportName = "троллейбуса"; break; //Троллейбус
+          case "tramway": transportName = "трамвая"; break; //Трамвай
+          case "minibus": transportName = "маршрутного такси"; break; //Маршрутное такси
+        }
+        
+        $('#ratingModalLabel').html("Оценка маршрута " + transportName + " номер " + transportData[transportIteration].name);
+    }
 
     function execRating() {
       var rating = [
                      {
                        "userId": 1,
-                       "routeType": "bus",
-                       "routeName": "67",
+                       "routeType": transportData[transportIteration].type,
+                       "routeName": transportData[transportIteration].name,
                        "tripDateTime": new Date(),
-                       "timeTableComplLevel": $('#count-timeTableComplLevel').text(),
-                       "freeSpaceLevel": $('#count-freeSpaceLevel').text(),
-                       "techStateLevel": $('#count-techStateLevel').text(),
-                       "lawViolenceLevel": $('#count-lawViolenceLevel').text(),
-                       "serviceLevel": $('#count-serviceLevel').text()
+                       "timeTableComplLevel": $('#timeTableComplLevel-count').text(),
+                       "freeSpaceLevel": $('#freeSpaceLevel-count').text(),
+                       "techStateLevel": $('#techStateLevel-count').text(),
+                       "lawViolenceLevel": $('#lawViolenceLevel-count').text(),
+                       "serviceLevel": $('#serviceLevel-count').text(),
+                       "timeTableComplComment": $('#timeTableComplLevel-comment').val(),
+                       "freeSpaceComment": $('#freeSpaceLevel-comment').val(),
+                       "techStateComment": $('#techStateLevel-comment').val(),
+                       "lawViolenceComment": $('#lawViolenceLevel-comment').val(),
+                       "serviceComment": $('#serviceLevel-comment').val()
                      }
                    ];
-      $('#ratingModal').modal('hide');
       $.ajax({
             type: "POST",
             url: "http://newhope/newhope/trips/add",
@@ -153,4 +217,20 @@
                 alert(errMsg);
             }
       });
+      transportIteration += 1;
+      if (transportIteration === transportData.length) {
+        $('#ratingModal').modal('hide');
+        /*todo запретить кнопку*/
+      } else {
+        initRating();
+      }
+    }
+    
+function cancelRating() {
+      transportIteration += 1;
+      if (transportIteration === transportData.length) {
+        /*todo запретить кнопку*/
+      } else {
+        initRating();
+      }
     }
