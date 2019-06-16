@@ -159,7 +159,7 @@ function init () {
     *    "stopName": "название остарновки"
     *    }
     */
-    const getBusTime = (time_leave_from_stop, transport_type, station_id) => {
+    const getBusTime = (time_leave_from_stop, segment) => {
         function getRandomArbitrary(min, max) {
           return Math.random() * (max - min) + min;
         };
@@ -190,7 +190,7 @@ function init () {
             var ride_time = 0;
             var walk_time = 0;
             var segments = activeRoute.getPaths().get(0).getSegments();
-            debugger
+
             for (var i = 0; i < segments.getLength(); i++) {
                 if (i === 0) {
                     //определяем время на дойти до остановки
@@ -204,10 +204,8 @@ function init () {
             //время, в которое надо отправить с остановки
             const time_leave_from_stop = end_time_in_secs - ride_time;
 
-            //время, в которое выезжает ближайший автобус раньше времени time_leave_from_stop
-            //дополнительно надо передать остановку, от которой едем
-            var station_id;
-            const real_time_leave_from_stop = getBusTime(time_leave_from_stop, segments.get(1).properties.get("type"), station_id);
+            //время, в которое выезжает ближайший автобус раньше времени time_leave_from_stop по переданному маршруту
+            const real_time_leave_from_stop = getBusTime(time_leave_from_stop, segments.get(1));
 
             var get_ready_time;
             if (time_ready == undefined) {
@@ -292,7 +290,7 @@ function init () {
     });
 
     const openMarkForm = (segments) => {
-        comsole.log('открываем форму оценки');
+        console.log('открываем форму оценки');
     };
 
     markButton.events.add(["click"], function (event) {
