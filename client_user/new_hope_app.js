@@ -138,6 +138,17 @@ function init () {
 
     //перевод секунд в читабельный формат времени
     const secToTime = function (ms) {
+
+
+
+        function appendLeadingZeroes(n){
+            if(n <= 9){
+                return "0" + n;
+            }
+            return n
+        }
+
+
         if (isNaN(ms)) {
             return {};
         }
@@ -146,7 +157,7 @@ function init () {
         var date = new Date();
         date.setTime(timestamp);
 
-        return `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+        return `${appendLeadingZeroes(date.getDate())}.${appendLeadingZeroes(date.getMonth()+1)}.${date.getFullYear()} ${appendLeadingZeroes(date.getHours())}:${appendLeadingZeroes(date.getMinutes())}`;
     };
 
     function getRandomArbitrary(min, max) {
@@ -213,10 +224,10 @@ function init () {
 
             //$('#result_list').html("");
             //$('#result_list').append(`Время в пути составит ${Math.round(ride_time/60)}мин. (${ride_time} сек). <br>Расстояние: ${length.text} (${Math.round(length.value)} м). <br>Время сбора: ${get_ready_time} мин. <br>Время, в которое надо прибыть: ${show_end_time}. <br>Время выхода: ${leave_time}`);
-            resultPanel._onUpdateResult(`Время поездки составит ${Math.round(ride_time/60)}мин. (${ride_time} сек).</br></br>
-                                        Время пешком до остановки составит ${Math.round(walk_time/60)}мин. (${walk_time} сек). </br></br>
-                                        Время, в которое надо выехать с остановки - ${secToTime(time_leave_from_stop)}мин. </br></br>
-                                        Время, в которое автобус выезжает с остановки - ${secToTime(real_time_leave_from_stop)}мин.</br></br>
+            resultPanel._onUpdateResult(`Время поездки составит ${Math.round(ride_time/60)} мин. (${ride_time} сек).</br></br>
+                                        Время пешком до остановки составит ${Math.round(walk_time/60)} мин. (${walk_time} сек). </br></br>
+                                        Время, в которое надо выехать с остановки - ${secToTime(time_leave_from_stop)} мин. </br></br>
+                                        Время, в которое автобус выезжает с остановки - ${secToTime(real_time_leave_from_stop)} мин.</br></br>
                                         Расстояние всего маршрута: ${length.text} (${Math.round(length.value)} м). </br></br>
                                         Время сбора: ${get_ready_time} мин. </br></br>
                                         Время, в которое надо прибыть: ${show_end_time}. </br></br>
