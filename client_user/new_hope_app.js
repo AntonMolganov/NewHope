@@ -290,7 +290,24 @@ function init () {
     });
 
     const openMarkForm = (segments) => {
-        console.log('открываем форму оценки');
+        try {
+            var transportData = [];
+            for (var i = 0; i < segments.getLength(); i++) {
+                if (segments.get(i).properties._data.type === "walk") continue;
+                var segment = segments.get(i).properties._data.rawProperties.SegmentMetaData;
+                if (segment.Transports.length == 0) continue;
+                transportData.push({
+                    type: segment.Transports[0].type,
+                    name: segment.Transports[0].name
+                });
+            }
+            if (transportData.length === 0) alert("Вы не ездили на общественном транспорте и оценивать нечего");
+            //todo
+
+
+        }catch (err){
+            alert("Ошибка при формировании данных поездки, попробуйте в другой раз :(");
+        }
     };
 
     markButton.events.add(["click"], function (event) {
