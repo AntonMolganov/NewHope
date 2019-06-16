@@ -152,6 +152,8 @@ function init () {
 
 
     //функция определения реального времени, в которое отъезжает ближайший автобус от остановки
+    //time_dir = before, если необходимо найти автобус до переданного времени отправления
+    //time_dir = after, если надо найти ближайший автобус после переданного времени прихода на остановку
     /**в реальной программе будет обращение к апи расписания чтобы найти автобус
     * http://newhope/newhope/trips/nearest
     *    {
@@ -161,12 +163,13 @@ function init () {
     *    "stopName": "название остарновки"
     *    }
     */
-    const getBusTime = (time_leave_from_stop, segment) => {
+    const getBusTime = (time_leave_from_stop, segment, time_dir) => {
         function getRandomArbitrary(min, max) {
           return Math.random() * (max - min) + min;
         };
 
-        return time_leave_from_stop - getRandomArbitrary(60, 300);
+        var dir = (time_dir === 'before') ? -1 : 1;
+        return time_leave_from_stop + (dir * getRandomArbitrary(60, 300));
     };
 
 
@@ -207,7 +210,7 @@ function init () {
             const time_leave_from_stop = end_time_in_secs - ride_time;
 
             //время, в которое выезжает ближайший автобус раньше времени time_leave_from_stop по переданному маршруту
-            const real_time_leave_from_stop = getBusTime(time_leave_from_stop, segments.get(1));
+            const real_time_leave_from_stop = getBusTime(time_leave_from_stop, segments.get(1), 'before');
 
             var get_ready_time;
             if (time_ready == undefined) {
@@ -222,7 +225,17 @@ function init () {
             //время, в которое надо начать собраться - время выезда автобуса с остановки минус время пешком минус время сборов
             var start_ready_time = (real_time_leave_from_stop - walk_time - get_ready_time*60);
 
-            //var nowdate = Date();
+            var now_date = Date.parse(Date())/1000;
+
+            //предупреждение, если уже поздно
+            var warn = '';
+            if (start_ready_time < now_date) {
+
+                const arr_time_if_now = getBusTime(now_date + walk_time, segments.get(1), 'after') + ride_time;
+
+                warn = `<font color="red">Вам надо было выйти ${Math.round((now_date - start_ready_time)/60)} мин. назад. </br></br>
+                        Если вы выйдете сейчас, то будете в точке Б в ${secToTime(arr_time_if_now)}</font>`;
+            }
 
             //$('#result_list').html("");
             //$('#result_list').append(`Время в пути составит ${Math.round(ride_time/60)}мин. (${ride_time} сек). <br>Расстояние: ${length.text} (${Math.round(length.value)} м). <br>Время сбора: ${get_ready_time} мин. <br>Время, в которое надо прибыть: ${show_end_time}. <br>Время выхода: ${leave_time}`);
@@ -235,7 +248,8 @@ function init () {
                                         Время сбора: ${get_ready_time} мин. </br></br>
                                         Время, в которое надо прибыть: ${show_end_time}. </br></br>
                                         Время выхода: ${secToTime(leave_time)}. </br></br>
-                                        Время, в которое надо начать собираться: ${secToTime(start_ready_time)} </br></br>`);
+                                        Время, в которое надо начать собираться: ${secToTime(start_ready_time)} </br></br>
+                                        ${warn}`);
 
         };
     };
@@ -303,7 +317,7 @@ function init () {
                 });
             }
             if (transportData.length === 0) alert("Вы не ездили на общественном транспорте и оценивать нечего");
-            
+
             initRating();
             $('#ratingModal').modal();
             
