@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ShipperDao extends CrudRepository<ShipperEntity, Long> {
+
+    Iterable<ShipperEntity> findAllByOrderByIdDesc();
 }

@@ -24,7 +24,7 @@ Content-Type: application/json
 
 ###
 
-POST http://newhope/newhope/trips/add
+GET http://newhope/newhope/trips/add
 Accept: */*
 Cache-Control: no-cache
 Content-Type: application/json
@@ -44,5 +44,19 @@ Content-Type: application/json
 <> 2019-06-15T055357.500.json
 
 ###
+
+POST http://newhope/newhope/trips/nearest
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+  "time": "2019-05-12"
+}
+
+<> 2019-06-15T055357.500.json
+
+###
+
 
 
