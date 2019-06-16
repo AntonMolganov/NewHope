@@ -24,7 +24,7 @@ Content-Type: application/json
 
 ###
 
-POST http://newhope/newhope/trips/add
+GET http://newhope/newhope/trips/add
 Accept: */*
 Cache-Control: no-cache
 Content-Type: application/json

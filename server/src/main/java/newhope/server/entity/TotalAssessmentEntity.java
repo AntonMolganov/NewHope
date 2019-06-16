@@ -17,22 +17,22 @@ public class TotalAssessmentEntity {
     private String shipperName;
 
     @Column(name = "N_AVG_TOTAL_LEVEL")
-    private float avgLevel;
+    private Float avgLevel;
 
     @Column(name = "N_AVG_COMPLIANCE_LEVEL")
-    private float timeTableComplLevel;
+    private Float timeTableComplLevel;
 
     @Column(name = "N_AVG_FREE_SPACE_LEVEL")
-    private float freeSpaceLevel;
+    private Float freeSpaceLevel;
 
     @Column(name = "N_AVG_TECH_STATE_LEVEL")
-    private float techStateLevel;
+    private Float techStateLevel;
 
     @Column(name = "N_AVG_LAW_VIOLENCE_LEVEL")
-    private float lawViolenceLevel;
+    private Float lawViolenceLevel;
 
     @Column(name = "N_AVG_SERVICE_LEVEL")
-    private float serviceLevel;
+    private Float serviceLevel;
 
 
     public Long getShipperId() {
@@ -51,51 +51,51 @@ public class TotalAssessmentEntity {
         this.shipperName = shipperName;
     }
 
-    public float getAvgLevel() {
+    public Float getAvgLevel() {
         return avgLevel;
     }
 
-    public void setAvgLevel(float avgLevel) {
+    public void setAvgLevel(Float avgLevel) {
         this.avgLevel = avgLevel;
     }
 
-    public float getTimeTableComplLevel() {
+    public Float getTimeTableComplLevel() {
         return timeTableComplLevel;
     }
 
-    public void setTimeTableComplLevel(float timeTableComplLevel) {
+    public void setTimeTableComplLevel(Float timeTableComplLevel) {
         this.timeTableComplLevel = timeTableComplLevel;
     }
 
-    public float getFreeSpaceLevel() {
+    public Float getFreeSpaceLevel() {
         return freeSpaceLevel;
     }
 
-    public void setFreeSpaceLevel(float freeSpaceLevel) {
+    public void setFreeSpaceLevel(Float freeSpaceLevel) {
         this.freeSpaceLevel = freeSpaceLevel;
     }
 
-    public float getTechStateLevel() {
+    public Float getTechStateLevel() {
         return techStateLevel;
     }
 
-    public void setTechStateLevel(float techStateLevel) {
+    public void setTechStateLevel(Float techStateLevel) {
         this.techStateLevel = techStateLevel;
     }
 
-    public float getLawViolenceLevel() {
+    public Float getLawViolenceLevel() {
         return lawViolenceLevel;
     }
 
-    public void setLawViolenceLevel(float lawViolenceLevel) {
+    public void setLawViolenceLevel(Float lawViolenceLevel) {
         this.lawViolenceLevel = lawViolenceLevel;
     }
 
-    public float getServiceLevel() {
+    public Float getServiceLevel() {
         return serviceLevel;
     }
 
-    public void setServiceLevel(float serviceLevel) {
+    public void setServiceLevel(Float serviceLevel) {
         this.serviceLevel = serviceLevel;
     }
 

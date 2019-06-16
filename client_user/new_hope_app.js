@@ -131,7 +131,7 @@ function init () {
         },
 
         _onUpdateResult: function (result) {
-            this._$content.text(result);
+            this._$content.html(result);
         }
 
     });
@@ -213,13 +213,13 @@ function init () {
 
             //$('#result_list').html("");
             //$('#result_list').append(`Время в пути составит ${Math.round(ride_time/60)}мин. (${ride_time} сек). <br>Расстояние: ${length.text} (${Math.round(length.value)} м). <br>Время сбора: ${get_ready_time} мин. <br>Время, в которое надо прибыть: ${show_end_time}. <br>Время выхода: ${leave_time}`);
-            resultPanel._onUpdateResult(`Время поездки составит ${Math.round(ride_time/60)}мин. (${ride_time} сек). 
-                                        Время пешком до остановки составит ${Math.round(walk_time/60)}мин. (${walk_time} сек). 
-                                        Время, в которое надо выехать с остановки - ${secToTime(time_leave_from_stop)}мин. 
-                                        Время, в которое автобус выезжает с остановки - ${secToTime(real_time_leave_from_stop)}мин.
-                                        Расстояние всего маршрута: ${length.text} (${Math.round(length.value)} м). 
-                                        Время сбора: ${get_ready_time} мин. 
-                                        Время, в которое надо прибыть: ${show_end_time}. 
+            resultPanel._onUpdateResult(`Время поездки составит ${Math.round(ride_time/60)}мин. (${ride_time} сек).</br></br>
+                                        Время пешком до остановки составит ${Math.round(walk_time/60)}мин. (${walk_time} сек). </br></br>
+                                        Время, в которое надо выехать с остановки - ${secToTime(time_leave_from_stop)}мин. </br></br>
+                                        Время, в которое автобус выезжает с остановки - ${secToTime(real_time_leave_from_stop)}мин.</br></br>
+                                        Расстояние всего маршрута: ${length.text} (${Math.round(length.value)} м). </br></br>
+                                        Время сбора: ${get_ready_time} мин. </br></br>
+                                        Время, в которое надо прибыть: ${show_end_time}. </br></br>
                                         Время выхода: ${leave_time}`);
 
         };
