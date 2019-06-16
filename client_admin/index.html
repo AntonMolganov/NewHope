@@ -36,11 +36,11 @@
      function rowStyle(row, index) {
       console.log(index);
       console.log(row.avgLevel);
-      if (row.avgLevel <= 2)
+      if (row.avgLevel <= 30)
       return {
         classes:"danger"
       }
-      if (row.avgLevel >= 4)
+      if (row.avgLevel >= 80)
       return {
         classes:"success"
       }
