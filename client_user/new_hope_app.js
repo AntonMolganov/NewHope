@@ -1,13 +1,5 @@
 const l_center = [58.01202424939408, 56.26974105834945];
 const def_t_end = '2019-06-16T23:59';//'13:00'; //время по умолчанию, к которому надо прибыть
-
-//var d = new Date();
-
-//const def_t_end = d.toISOString() ;
-
-
-//2019-06-15T00:59
-
 const def_t_ready = '10'; //время на сборы по умолчанию
 
 function init () {
@@ -138,16 +130,12 @@ function init () {
 
     //перевод секунд в читабельный формат времени
     const secToTime = function (ms) {
-
-
-
         function appendLeadingZeroes(n){
             if(n <= 9){
                 return "0" + n;
             }
             return n
         }
-
 
         if (isNaN(ms)) {
             return {};
@@ -160,13 +148,22 @@ function init () {
         return `${appendLeadingZeroes(date.getDate())}.${appendLeadingZeroes(date.getMonth()+1)}.${date.getFullYear()} ${appendLeadingZeroes(date.getHours())}:${appendLeadingZeroes(date.getMinutes())}`;
     };
 
-    function getRandomArbitrary(min, max) {
-      return Math.random() * (max - min) + min;
-    };
 
     //функция определения реального времени, в которое отъезжает ближайший автобус от остановки
-    //в реальной программе будет обращаться к расписанию и находить этот автобус
-    const getBusTime = (time_leave_from_stop, transport_type, station_id) => {
+    /**в реальной программе будет обращение к апи расписания чтобы найти автобус
+    * http://newhope/newhope/trips/nearest
+    *    {
+    *    "time": "2019-11-12",
+    *    "transportType": "bus",
+    *    "routeName": "7т",
+    *    "stopName": "название остарновки"
+    *    }
+    */
+    const getBusTime = (time_leave_from_stop, segment) => {
+        function getRandomArbitrary(min, max) {
+          return Math.random() * (max - min) + min;
+        };
+
         return time_leave_from_stop - getRandomArbitrary(60, 300);
     };
 
@@ -177,7 +174,6 @@ function init () {
         if (activeRoute) {
             // Получим протяженность маршрута.
             const length = activeRoute.properties.get("distance");
-
 
             var end_time_in_secs;
             if (time_end == undefined) {
@@ -194,6 +190,7 @@ function init () {
             var ride_time = 0;
             var walk_time = 0;
             var segments = activeRoute.getPaths().get(0).getSegments();
+
             for (var i = 0; i < segments.getLength(); i++) {
                 if (i === 0) {
                     //определяем время на дойти до остановки
@@ -207,10 +204,8 @@ function init () {
             //время, в которое надо отправить с остановки
             const time_leave_from_stop = end_time_in_secs - ride_time;
 
-            //время, в которое выезжает ближайший автобус раньше времени time_leave_from_stop
-            //дополнительно надо передать остановку, от которой едем
-            var station_id;
-            const real_time_leave_from_stop = getBusTime(time_leave_from_stop, segments.get(1).properties.get("type"), station_id);
+            //время, в которое выезжает ближайший автобус раньше времени time_leave_from_stop по переданному маршруту
+            const real_time_leave_from_stop = getBusTime(time_leave_from_stop, segments.get(1));
 
             var get_ready_time;
             if (time_ready == undefined) {
@@ -219,8 +214,13 @@ function init () {
                 get_ready_time = time_ready;
             };
 
-            //время, в которое надо выйти - время выезда автобуса с остановки минус время пешком минус время сборов
-            var leave_time = secToTime((real_time_leave_from_stop - walk_time - get_ready_time*60));
+            //время, в которое надо выйти - время выезда автобуса с остановки минус время пешком
+            var leave_time = (real_time_leave_from_stop - walk_time);
+
+            //время, в которое надо начать собраться - время выезда автобуса с остановки минус время пешком минус время сборов
+            var start_ready_time = (real_time_leave_from_stop - walk_time - get_ready_time*60);
+
+            //var nowdate = Date();
 
             //$('#result_list').html("");
             //$('#result_list').append(`Время в пути составит ${Math.round(ride_time/60)}мин. (${ride_time} сек). <br>Расстояние: ${length.text} (${Math.round(length.value)} м). <br>Время сбора: ${get_ready_time} мин. <br>Время, в которое надо прибыть: ${show_end_time}. <br>Время выхода: ${leave_time}`);
@@ -228,10 +228,12 @@ function init () {
                                         Время пешком до остановки составит ${Math.round(walk_time/60)} мин. (${walk_time} сек). </br></br>
                                         Время, в которое надо выехать с остановки - ${secToTime(time_leave_from_stop)} мин. </br></br>
                                         Время, в которое автобус выезжает с остановки - ${secToTime(real_time_leave_from_stop)} мин.</br></br>
+                                        Ожидание составит ${Math.round((time_leave_from_stop - real_time_leave_from_stop)/60)} мин. (${Math.round(time_leave_from_stop - real_time_leave_from_stop)} сек). </br></br>
                                         Расстояние всего маршрута: ${length.text} (${Math.round(length.value)} м). </br></br>
                                         Время сбора: ${get_ready_time} мин. </br></br>
                                         Время, в которое надо прибыть: ${show_end_time}. </br></br>
-                                        Время выхода: ${leave_time}`);
+                                        Время выхода: ${secToTime(leave_time)}. </br></br>
+                                        Время, в которое надо начать собираться: ${secToTime(start_ready_time)} </br></br>`);
 
         };
     };
@@ -240,11 +242,11 @@ function init () {
         // Получим ссылку на маршрут.
         myMap.controls.get('routePanelControl').routePanel.getRouteAsync().then(function (route) {
 
-            // Зададим максимально допустимое число маршрутов, возвращаемых мультимаршрутизатором.
-            route.model.setParams({results: 2}, true);
+        // Зададим максимально допустимое число маршрутов, возвращаемых мультимаршрутизатором.
+        route.model.setParams({results: 1}, true);
 
-            // Повесим обработчик на событие построения маршрута.
-            route.model.events.add('requestsuccess', function () {updateResultFormRoute (route, time_ready, time_end)});
+        // Повесим обработчик на событие построения маршрута.
+        route.model.events.add('requestsuccess', function () {updateResultFormRoute (route, time_ready, time_end)});
         });
     };
 
@@ -266,10 +268,43 @@ function init () {
         }
     });
 
+
+    var markButton = new ymaps.control.Button({
+        data: {
+            // Зададим иконку для кнопки.
+            //image: 'images/button.jpg',
+            // Текст на кнопке.
+            content: 'Оценить',
+            // Текст всплывающей подсказки.
+            title: 'Оценить последнюю поездку'
+        },
+        options: {
+            //float: 'right', 
+            selectOnClick: false
+        }
+    });
+
+    myMap.controls.add(markButton, {
+        float: 'right',
+        floatIndex: 100
+    });
+
+    const openMarkForm = (segments) => {
+        console.log('открываем форму оценки');
+    };
+
+    markButton.events.add(["click"], function (event) {
+        myMap.controls.get('routePanelControl').routePanel.getRouteAsync().then(function (route) {
+            var activeRoute = route.getActiveRoute();
+            if (activeRoute) {
+                var segments = activeRoute.getPaths().get(0).getSegments();
+                openMarkForm(segments);
+            };
+        });
+    });
+
     //обновляем данные в окне с результатами при построении маршрута
     updateResultForm();
-
-
 }
 
 ymaps.ready(init);
