@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DB290746-83E9-A55A-419A-19628D93C1A8" schemaObject="C1AA0350-047D-A3ED-E095-E232D2E46C4B" name="ESTIMATE_TYPES">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:27:22 UTC</createdTime>
+<commentInRDBMS>Виды оценок (что оцениваем)</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<ordsAlias>table_5</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ESTIMATE_TYPE_ID" id="138DAD75-A998-6A36-04A9-B2E9DDCBF9CF">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:27:57 UTC</createdTime>
+<commentInRDBMS>ИД вида оценки</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="S_NAME" id="58CFB254-CE48-7383-5452-A96CCFE6CCA7">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:27:57 UTC</createdTime>
+<commentInRDBMS>Наименование вида оценки (что оцениваем)</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2F68E62E-C188-C5B2-6D3B-8D877039CE55" name="PK_ESTIMATE_TYPES">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 13:27:57 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="138DAD75-A998-6A36-04A9-B2E9DDCBF9CF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

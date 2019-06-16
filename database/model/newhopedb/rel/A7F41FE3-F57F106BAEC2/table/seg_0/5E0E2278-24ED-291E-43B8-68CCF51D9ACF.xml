@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5E0E2278-24ED-291E-43B8-68CCF51D9ACF" schemaObject="C1AA0350-047D-A3ED-E095-E232D2E46C4B" name="CLIENTS">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:55:52 UTC</createdTime>
+<commentInRDBMS>Клиенты</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CLIENT_ID" id="14D30A66-6316-18A5-1C51-1BE6B8662FC3">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:58:24 UTC</createdTime>
+<commentInRDBMS>ИД клиента</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="S_NAME" id="257285A2-CEFE-FD51-6C85-596D678A3E3B">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:58:24 UTC</createdTime>
+<commentInRDBMS>имя/никнейм</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300 CHAR</dataTypeSize>
+<ownDataTypeParameters>300 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="S_PHONE" id="362DF896-FA44-E3D2-5119-079D6523E580">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:58:24 UTC</createdTime>
+<commentInRDBMS>телефон</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="S_EMAIL" id="C901C58F-AC21-2CB5-CAA5-182C86CCE67D">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:58:24 UTC</createdTime>
+<commentInRDBMS>e-mail</commentInRDBMS>
+<ownerDesignName>newhopedb</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300 CHAR</dataTypeSize>
+<ownDataTypeParameters>300 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F38210E5-7A53-6705-5CF1-F416C5D49111" name="PK_CLIENTS">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:58:24 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="14D30A66-6316-18A5-1C51-1BE6B8662FC3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,62 @@
+GET http://newhope/newhope/test
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-15T055432.200.json
+
+###
+
+POST http://newhope/newhope/trips/total
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-06-15T055357.500.json
+
+###
+
+POST http://newhope/newhope/trips/list
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-06-15T055357.500.json
+
+###
+
+GET http://newhope/newhope/trips/add
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+[
+  {
+    "userId": 1,
+    "routeType": 1,
+    "routeName": "67",
+    "tripDateTime": "2019-05-12",
+    "serviceLevel": 1,
+    "techStateLevel": 1
+  }
+]
+
+
+<> 2019-06-15T055357.500.json
+
+###
+
+POST http://newhope/newhope/trips/nearest
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+  "time": "2019-05-12"
+}
+
+<> 2019-06-15T055357.500.json
+
+###
+
+
+

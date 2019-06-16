@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="NEWHOPE" directorySegmentName="seg_0" id="C1AA0350-047D-A3ED-E095-E232D2E46C4B">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 10:55:40 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<ordsAlias>schema_1</ordsAlias>
+</SchemaObject>

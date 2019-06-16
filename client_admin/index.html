@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Оценка удовлетворенности перевозчиком за период</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+  </head>
+  <body>    
+    <div class="container">
+      <table id="table" 
+             data-toggle="table" 
+             class="display table table-bordered" 
+             data-url="http://newhope/newhope/trips/total" 
+             data-row-style="rowStyle"
+             data-sort-name="position"
+             data-sort-order="asc">
+        <thead>
+          <tr>
+            <th data-field="shipperName" align="center">Перевозчик</th>
+            <th data-field="position">Позиция<br>в рейтинге</th>
+            <th data-field="avgLevel">Общая<br>оценка<br>(проценты)</th>
+            <th data-field="techStateLevel">Техническое<br>состояние</th>
+            <th data-field="lawViolenceLevel">Соблюдение<br>ПДД</th>
+            <th data-field="timeTableComplLevel">Соблюдение<br>графика</th>
+            <th data-field="freeSpaceLevel">Заполненность<br>транспорта</th>
+            <th data-field="serviceLevel">Качество<br>оказания<br>услуг</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </body>
+  <script>
+     function rowStyle(row, index) {
+      if (row.avgLevel <= 30)
+      return {
+        classes:"danger"
+      }
+      if (row.avgLevel >= 80)
+      return {
+        classes:"success"
+      }
+      return {
+        classes:"default"
+      }
+    }
+  </script>
+</html>

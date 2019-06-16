@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="C8E2DA5C-2105-3974-7EF9-B112D142180F" containerWithKeyObject="C3071214-F400-1AA0-CA0C-F8FE153D0483" localFKIndex="19DC146B-29B1-C59E-9856-D67E45284FCF" name="FK2_ROUTES$TRANSP_TYPE">
+<createdBy>IKolokutskij</createdBy>
+<createdTime>2019-06-15 14:06:08 UTC</createdTime>
+<ownerDesignName>newhopedb</ownerDesignName>
+<referredTableLongName>NEWHOPE.TRANSPORT_TYPE</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>4E8D6854-2D36-B35A-194C-0BCB22323462</referredTableID>
+<keyObject>9904F004-533A-B204-66D5-33CAF1E66FEC</keyObject>
+<referredKeyID>9904F004-533A-B204-66D5-33CAF1E66FEC</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>TRANSPORT_TYPE_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
