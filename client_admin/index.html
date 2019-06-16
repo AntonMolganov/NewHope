@@ -10,7 +10,7 @@
   </head>
   <body>    
     <div class="container">
-      <table id="table" data-toggle="table" class="display table table-bordered" data-url="http://newhope/newhope/trips/total">
+      <table id="table" data-toggle="table" class="display table table-bordered" data-url="http://newhope/newhope/trips/total" data-row-style="rowStyle">
         <thead>
           <tr>
             <th data-field="shipperName">Перевозчик</th>
@@ -26,4 +26,21 @@
       </table>
     </div>
   </body>
- </html>
+  <script>
+     function rowStyle(row, index) {
+      console.log(index);
+      console.log(row.avgLevel);
+      if (row.avgLevel <= 2)
+      return {
+        classes:"danger"
+      }
+      if (row.avgLevel >= 4)
+      return {
+        classes:"success"
+      }
+      return {
+        classes:"default"
+      }
+    }
+  </script>
+</html>
