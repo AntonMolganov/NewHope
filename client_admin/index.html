@@ -20,13 +20,13 @@
         <thead>
           <tr>
             <th data-field="shipperName">Перевозчик</th>
-            <th data-field="position">Позиция в рейтинге</th>
-            <th data-field="timeTableComplLevel">Соблюдение графика</th>
-			<th data-field="freeSpaceLevel">Заполненность т/с</th>
-			<th data-field="techStateLevel">Техническое состояние т/с</th>
-			<th data-field="lawViolenceLevel">Соблюдение ПДД</th>
-			<th data-field="serviceLevel">Качество оказания услуг</th>
+            <th data-field="position">Позиция в рейтинге</            
             <th data-field="avgLevel">Общая оценка</th>
+            <th data-field="timeTableComplLevel">Соблюдение графика</th>
+            <th data-field="freeSpaceLevel">Заполненность т/с</th>
+            <th data-field="techStateLevel">Техническое состояние т/с</th>
+            <th data-field="lawViolenceLevel">Соблюдение ПДД</th>
+            <th data-field="serviceLevel">Качество оказания услуг</th>
           </tr>
         </thead>
       </table>
@@ -34,8 +34,6 @@
   </body>
   <script>
      function rowStyle(row, index) {
-      console.log(index);
-      console.log(row.avgLevel);
       if (row.avgLevel <= 30)
       return {
         classes:"danger"
