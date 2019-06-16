@@ -1,4 +1,14 @@
 const l_center = [58.01202424939408, 56.26974105834945];
+const def_t_end = '2019-06-16T23:59';//'13:00'; //время по умолчанию, к которому надо прибыть
+
+//var d = new Date();
+
+//const def_t_end = d.toISOString() ;
+
+
+//2019-06-15T00:59
+
+const def_t_ready = '10'; //время на сборы по умолчанию
 
 function init () {
     // Создаем карту с добавленными на нее кнопками.
@@ -10,6 +20,7 @@ function init () {
         buttonMaxWidth: 300
     });
 
+    //создаём редактор маршрута
     var control = myMap.controls.get('routePanelControl');
     control.routePanel.state.set({
         type: 'masstransit',
@@ -22,6 +33,7 @@ function init () {
         types: { masstransit: true, pedestrian: false, taxi: false }
     });
 
+    //создаём форму для ввода времени
     var TimePanelClass = function (options) {
         TimePanelClass.superclass.constructor.call(this, options);
         this._$content = null;
@@ -46,18 +58,206 @@ function init () {
 
         _onGetChildElement: function (parentDomContainer) {
             // Создаем HTML-элемент с текстом.
-            this._$content = $('<div class="customControl"><button>yytyty</button></div>').appendTo(parentDomContainer);
+            this._$content = $(`<div class="customControl"><p>Время, в которое вы хотите прибыть в точку Б</p><input type="datetime-local" id="time_editor" value="${def_t_end}"><p>Время на сборы, мин</p><input type="text" size="10" id="get_ready_editor" value="${def_t_ready}"></div>`).appendTo(parentDomContainer);
+            // Начинаем слушать клики на кнопках макета.
+
+            $('#get_ready_editor').bind('input', function () {
+                //если значения ещё не заполнялись, то берем дефолтные
+                var t_ready;
+                if ($('#get_ready_editor').prop('value') === undefined) {
+                    t_ready = $('#get_ready_editor').attr('value');
+                } else {
+                    t_ready = $('#get_ready_editor').prop('value');
+                };
+
+                var t_end;
+                if ($('#time_editor').prop('value') === undefined) {
+                    t_end = $('#time_editor').attr('value');
+                } else {
+                    t_end = $('#time_editor').prop('value');
+                };
+
+                updateResultForm(t_ready, t_end);
+            });
+            $('#time_editor').bind('input', function () {
+                //если значения ещё не заполнялись, то берем дефолтные
+                var t_ready;
+                if ($('#get_ready_editor').prop('value') === undefined) {
+                    t_ready = $('#get_ready_editor').attr('value');
+                } else {
+                    t_ready = $('#get_ready_editor').prop('value');
+                };
+
+                var t_end;
+                if ($('#time_editor').prop('value') === undefined) {
+                    t_end = $('#time_editor').attr('value');
+                } else {
+                    t_end = $('#time_editor').prop('value');
+                };
+
+                updateResultForm(t_ready, t_end);
+            });
         },
     });
+
+
+    //создаём форму с результатами
+    var ResultPanelClass = function (options) {
+        ResultPanelClass.superclass.constructor.call(this, options);
+        this._$content = null;
+        this._geocoderDeferred = null;
+    };
+
+    ymaps.util.augment(ResultPanelClass, ymaps.collection.Item, {
+        onAddToMap: function (map) {
+            ResultPanelClass.superclass.onAddToMap.call(this, map);
+            this._lastCenter = null;
+            this.getParent().getChildElement(this).then(this._onGetChildElement, this);
+        },
+
+        onRemoveFromMap: function (oldMap) {
+            this._lastCenter = null;
+            if (this._$content) {
+                this._$content.remove();
+                this._mapEventGroup.removeAll();
+            }
+            ResultPanelClass.superclass.onRemoveFromMap.call(this, oldMap);
+        },
+
+        _onGetChildElement: function (parentDomContainer) {
+            // Создаем HTML-элемент с текстом.
+            //this._$content = $('<div class="customControl"><p>Время, в которое вы хотите прибыть в точку Б</p><input type="time"><p>Время на сборы, мин</p><input type="text" size="10"></div>').appendTo(parentDomContainer);
+            this._$content = $('<div class="customControl">Укажите время, к которому необходимо прибыть, время на сборы и маршрут</div>').appendTo(parentDomContainer);
+        },
+
+        _onUpdateResult: function (result) {
+            this._$content.text(result);
+        }
+
+    });
+
+    //перевод секунд в читабельный формат времени
+    const secToTime = function (ms) {
+        if (isNaN(ms)) {
+            return {};
+        }
+
+        var timestamp = ms*1000;
+        var date = new Date();
+        date.setTime(timestamp);
+
+        return `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+    };
+
+    function getRandomArbitrary(min, max) {
+      return Math.random() * (max - min) + min;
+    };
+
+    //функция определения реального времени, в которое отъезжает ближайший автобус от остановки
+    //в реальной программе будет обращаться к расписанию и находить этот автобус
+    const getBusTime = (time_leave_from_stop, transport_type, station_id) => {
+        return time_leave_from_stop - getRandomArbitrary(60, 300);
+    };
+
+
+    //обновляем данные на форме с результатом по данным маршрута
+    const updateResultFormRoute = (route, time_ready, time_end) => {
+        var activeRoute = route.getActiveRoute();
+        if (activeRoute) {
+            // Получим протяженность маршрута.
+            const length = activeRoute.properties.get("distance");
+
+
+            var end_time_in_secs;
+            if (time_end == undefined) {
+                end_time_in_secs = def_t_end;
+            } else {
+                end_time_in_secs = time_end;
+            };
+
+            end_time_in_secs = Date.parse(end_time_in_secs)/1000;
+
+            const show_end_time = secToTime(end_time_in_secs);
+
+            //const ride_time   = activeRoute.properties.get("duration");
+            var ride_time = 0;
+            var walk_time = 0;
+            var segments = activeRoute.getPaths().get(0).getSegments();
+            for (var i = 0; i < segments.getLength(); i++) {
+                if (i === 0) {
+                    //определяем время на дойти до остановки
+                    walk_time = segments.get(i).properties.get("duration").value;
+                } else {
+                    //определяем время по сегментам, начиная со второго (первый - пешком, его не учитываем)
+                    ride_time += segments.get(i).properties.get("duration").value;
+                };
+            };
+
+            //время, в которое надо отправить с остановки
+            const time_leave_from_stop = end_time_in_secs - ride_time;
+
+            //время, в которое выезжает ближайший автобус раньше времени time_leave_from_stop
+            //дополнительно надо передать остановку, от которой едем
+            var station_id;
+            const real_time_leave_from_stop = getBusTime(time_leave_from_stop, segments.get(1).properties.get("type"), station_id);
+
+            var get_ready_time;
+            if (time_ready == undefined) {
+                get_ready_time = def_t_ready;
+            } else {
+                get_ready_time = time_ready;
+            };
+
+            //время, в которое надо выйти - время выезда автобуса с остановки минус время пешком минус время сборов
+            var leave_time = secToTime((real_time_leave_from_stop - walk_time - get_ready_time*60));
+
+            //$('#result_list').html("");
+            //$('#result_list').append(`Время в пути составит ${Math.round(ride_time/60)}мин. (${ride_time} сек). <br>Расстояние: ${length.text} (${Math.round(length.value)} м). <br>Время сбора: ${get_ready_time} мин. <br>Время, в которое надо прибыть: ${show_end_time}. <br>Время выхода: ${leave_time}`);
+            resultPanel._onUpdateResult(`Время поездки составит ${Math.round(ride_time/60)}мин. (${ride_time} сек). 
+                                        Время пешком до остановки составит ${Math.round(walk_time/60)}мин. (${walk_time} сек). 
+                                        Время, в которое надо выехать с остановки - ${secToTime(time_leave_from_stop)}мин. 
+                                        Время, в которое автобус выезжает с остановки - ${secToTime(real_time_leave_from_stop)}мин.
+                                        Расстояние всего маршрута: ${length.text} (${Math.round(length.value)} м). 
+                                        Время сбора: ${get_ready_time} мин. 
+                                        Время, в которое надо прибыть: ${show_end_time}. 
+                                        Время выхода: ${leave_time}`);
+
+        };
+    };
+
+    const updateResultForm = (time_ready, time_end) => {
+        // Получим ссылку на маршрут.
+        myMap.controls.get('routePanelControl').routePanel.getRouteAsync().then(function (route) {
+
+            // Зададим максимально допустимое число маршрутов, возвращаемых мультимаршрутизатором.
+            route.model.setParams({results: 2}, true);
+
+            // Повесим обработчик на событие построения маршрута.
+            route.model.events.add('requestsuccess', function () {updateResultFormRoute (route, time_ready, time_end)});
+        });
+    };
 
     var timePanel = new TimePanelClass();
     myMap.controls.add(timePanel, {
         float: 'none',
         position: {
-            top: 300,
-            left: 300
+            top: 10,
+            left: 250
         }
     });
+
+    var resultPanel = new ResultPanelClass();
+    myMap.controls.add(resultPanel, {
+        float: 'none',
+        position: {
+            top: 10,
+            left: 620
+        }
+    });
+
+    //обновляем данные в окне с результатами при построении маршрута
+    updateResultForm();
+
 
 }
 
