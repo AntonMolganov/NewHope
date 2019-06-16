@@ -108,23 +108,45 @@
 
     $(document).ready(function() {
       $('#timeTableComplLevel').on('starrr:change', function(e, value){
-        $('#count-timeTableComplLevel').html(value);
-        
-        
+        $('#timeTableComplLevel-count').html(value);
+        if (value < 5) {
+          $('#timeTableComplLevel-comment').removeClass('hidden');
+        } else {
+          $('#timeTableComplLevel-comment').addClass('hidden');
+        }
       });
       $('#freeSpaceLevel').on('starrr:change', function(e, value){
-        $('#count-freeSpaceLevel').html(value);
+        $('#freeSpaceLevel-count').html(value);
+        if (value < 5) {
+          $('#freeSpaceLevel-comment').removeClass('hidden');
+        } else {
+          $('#freeSpaceLevel-comment').addClass('hidden');
+        }
       });
       $('#techStateLevel').on('starrr:change', function(e, value){
-        $('#count-techStateLevel').html(value);
+        $('#techStateLevel-count').html(value);
+        if (value < 5) {
+          $('#techStateLevel-comment').removeClass('hidden');
+        } else {
+          $('#techStateLevel-comment').addClass('hidden');
+        }
       });
       $('#lawViolenceLevel').on('starrr:change', function(e, value){
-        $('#count-lawViolenceLevel').html(value);
+        $('#lawViolenceLevel-count').html(value);
+        if (value < 5) {
+          $('#lawViolenceLevel-comment').removeClass('hidden');
+        } else {
+          $('#lawViolenceLevel-comment').addClass('hidden');
+        }
       });
       $('#serviceLevel').on('starrr:change', function(e, value){
-        $('#count-serviceLevel').html(value);
+        $('#serviceLevel-count').html(value);
+        if (value < 5) {
+          $('#serviceLevel-comment').removeClass('hidden');
+        } else {
+          $('#serviceLevel-comment').addClass('hidden');
+        }
       });
-      $('#timeTableComplLevel-comment').collapse('show');
     });
 
     function execRating() {
@@ -134,11 +156,16 @@
                        "routeType": "bus",
                        "routeName": "67",
                        "tripDateTime": new Date(),
-                       "timeTableComplLevel": $('#count-timeTableComplLevel').text(),
-                       "freeSpaceLevel": $('#count-freeSpaceLevel').text(),
-                       "techStateLevel": $('#count-techStateLevel').text(),
-                       "lawViolenceLevel": $('#count-lawViolenceLevel').text(),
-                       "serviceLevel": $('#count-serviceLevel').text()
+                       "timeTableComplLevel": $('#timeTableComplLevel-count').text(),
+                       "freeSpaceLevel": $('#freeSpaceLevel-count').text(),
+                       "techStateLevel": $('#techStateLevel-count').text(),
+                       "lawViolenceLevel": $('#lawViolenceLevel-count').text(),
+                       "serviceLevel": $('#serviceLevel-count').text(),
+                       "timeTableComplComment": $('#timeTableComplLevel-comment').val(),
+                       "freeSpaceComment": $('#freeSpaceLevel-comment').val(),
+                       "techStateComment": $('#techStateLevel-comment').val(),
+                       "lawViolenceComment": $('#lawViolenceLevel-comment').val(),
+                       "serviceComment": $('#serviceLevel-comment').val()
                      }
                    ];
       $('#ratingModal').modal('hide');
