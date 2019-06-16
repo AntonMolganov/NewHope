@@ -2,23 +2,25 @@ package newhope.server.service.impl;
 
 import newhope.server.dao.ShipperDao;
 import newhope.server.entity.ShipperEntity;
-import newhope.server.service.TestService;
+import newhope.server.service.ShippersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
 
 @Service
-public class TestServiceImpl implements TestService {
+@Transactional
+public class ShippersServiceImpl implements ShippersService {
 
     @Autowired
-    ShipperDao shipperDao;
+    ShipperDao dao;
 
     @Override
-    public List<ShipperEntity> test() {
+    public List<ShipperEntity> list() {
         List<ShipperEntity> resultList = new LinkedList<>();
-        shipperDao.findAll().forEach(resultList::add);
+        dao.findAllByOrderByIdDesc().forEach(resultList::add);
         return resultList;
     }
 }

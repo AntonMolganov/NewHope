@@ -1,9 +1,13 @@
 package newhope.server.controller;
 
+import newhope.server.dto.NearestTimeRequestDto;
 import newhope.server.dto.TripFactDto;
+import newhope.server.entity.RouteEntity;
 import newhope.server.entity.ShipperEntity;
+import newhope.server.entity.TotalAssessmentEntity;
 import newhope.server.entity.TripFactEntity;
-import newhope.server.service.TestService;
+import newhope.server.service.RoutesService;
+import newhope.server.service.ShippersService;
 import newhope.server.service.TripsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,28 +20,43 @@ import java.util.List;
 public class NewHopeMainController {
 
     @Autowired
-    TestService testService;
+    ShippersService shippersService;
 
     @Autowired
     TripsService tripsService;
 
-    @RequestMapping("/test")
-    public Iterable<ShipperEntity> main(){
-        return testService.test();
+    @Autowired
+    RoutesService routesService;
+
+    @RequestMapping(value = "/shippers/list")
+    public List<ShipperEntity> shippersList(){
+        return shippersService.list();
     }
 
-    @RequestMapping(value = "/trips/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/routes/list")
+    public List<RouteEntity> routesList(){
+        return routesService.list();
+    }
+
+    @RequestMapping(value = "/trips/add")
     public void addAssessment(@RequestBody List<TripFactDto> tripFacts){
         tripsService.addAssessments(tripFacts);
     }
 
-    @RequestMapping(value = "/trips/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/trips/list")
     public List<TripFactEntity> listAssessments(){
         return tripsService.listAllTrips();
     }
 
-    @RequestMapping(value = "/trips/total", method = RequestMethod.POST)
-    public String getTotalAssessments(){
+    @RequestMapping(value = "/trips/total")
+    public List<TotalAssessmentEntity> getTotalAssessments(){
         return tripsService.getTotalAssessments();
     }
+
+    @RequestMapping(value = "/trips/nearest")
+    public Long getNearest(@RequestBody NearestTimeRequestDto dto){
+        return tripsService.getNearestDepartureTime(dto);
+    }
+
+
 }

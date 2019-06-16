@@ -6,7 +6,7 @@ public class TripFactDto {
 
     public Long id;
     public Long userId;
-    public Long routeType;
+    public String routeType;
     public String routeName;
     public Date tripDateTime;
     public Integer serviceLevel;
@@ -84,11 +84,11 @@ public class TripFactDto {
         this.freeSpaceLevel = freeSpaceLevel;
     }
 
-    public Long getRouteType() {
+    public String getRouteType() {
         return routeType;
     }
 
-    public void setRouteType(Long routeType) {
+    public void setRouteType(String routeType) {
         this.routeType = routeType;
     }
 
